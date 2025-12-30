@@ -1,0 +1,69 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.BROADCAST_CLOSE_SYSTEM_DIALOGS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <uses-feature
+        android:name="android.hardware.sensor.accelerometer"
+        android:required="true" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <application
+        android:usesCleartextTraffic="true"
+        android:supportsRtl="true">
+
+        <receiver android:name="io.mob.resu.reandroidsdk.NotificationActionReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="postmessage" />
+                <action android:name="CustomCTA" />
+                <action android:name="CarouselLeft" />
+                <action android:name="CarouselRight" />
+                <action android:name="notification_cancelled" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name="io.mob.resu.reandroidsdk.ReNotificationBroadcastReceiver"
+            android:exported="true" />
+
+        <receiver
+            android:name="io.mob.resu.reandroidsdk.ScheduleNotification"
+            android:exported="true">
+
+        </receiver>
+
+        <service
+            android:name=".AppKillService"
+            android:stopWithTask="false"
+            android:exported="true"/>
+
+        <activity
+            android:name=".ReNotificationActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan"
+            android:exported="true">
+
+        </activity>
+        <receiver
+            android:name="io.mob.resu.reandroidsdk.InstallReferrerReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+                <action android:name="android.intent.action.PACKAGE_FIRST_LAUNCH" />
+            </intent-filter>
+        </receiver>
+
+
+    </application>
+
+
+</manifest>
